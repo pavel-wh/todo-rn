@@ -30,6 +30,10 @@ export default function App() {
     ])
   }
 
+  const removeTodo = id => {
+    setTodos(prev => prev.filter(todo => todo.id !== id))
+  }
+
   return (
     <View>
       <Navbar title='ToDo App' />
@@ -39,7 +43,7 @@ export default function App() {
           keyExtractor={ item => item.id.toString() }
           data={ todos }
           renderItem={ ({item}) => (
-            <ToDo todo={ item } />
+            <ToDo todo={ item } onRemove={ removeTodo }/>
           )}
         />
       </View>
