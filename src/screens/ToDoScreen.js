@@ -4,12 +4,20 @@ import { THEME } from '../theme'
 import { AppCard } from '../components/ui/Card'
 import { EditModal } from '../components/EditModal'
 
-export const ToDoScreen = ({ goBack, todo, onRemove }) => {
+export const ToDoScreen = ({ goBack, todo, onRemove, onSave }) => {
     const [modal, setModal] = useState(false)
+
+    const saveHandler = title => {
+        onSave(todo.id, title)
+        setModal(false)
+    }
+
     return (
         <View>
             <EditModal 
+                value={ todo.title }
                 visible={ modal } 
+                onSave={ saveHandler }
                 onCancel={ () => setModal(false) }
                 animationType="fade"
                 transparent={ false }
