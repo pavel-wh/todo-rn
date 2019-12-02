@@ -5,7 +5,7 @@ import { MainScreen } from './src/screens/MainScreen'
 import { ToDoScreen } from './src/screens/ToDoScreen'
 
 export default function App() {
-  const [todoId, setTodoId] = useState(null)
+  const [todoId, setTodoId] = useState('2')
   const [todos, setTodos] = useState([
     { 
       id: '1',
@@ -44,7 +44,7 @@ export default function App() {
 
   if (todoId) {
     const selectedTodo = todos.find(todo => todo.id === todoId)
-    content = <ToDoScreen goBack={ () => setTodoId(null) } todo={ selectedTodo } />
+    content = <ToDoScreen goBack={ () => setTodoId(null) } todo={ selectedTodo } removeTodo={ removeTodo } />
   }
 
   return (
