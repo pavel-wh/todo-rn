@@ -1,6 +1,7 @@
 export const THEME = {
     DANGER_COLOR: 'red',
     GREY_COLOR: 'lightgray',
-    WHITE_COLOR: '#eeeeee',
+    BG_COLOR: '#eeeeee',
+    WHITE_COLOR: 'white',
     MAIN_COLOR: 'firebrick'
 }

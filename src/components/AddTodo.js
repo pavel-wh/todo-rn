@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
 import { THEME } from '../theme'
+import { MaterialIcons } from '@expo/vector-icons'
 
 export const AddTodo = ({ onSubmit }) => {
     
@@ -27,7 +28,11 @@ export const AddTodo = ({ onSubmit }) => {
                 autoCapitalize='none'
                 keyboardType='ascii-capable'
             />
-            <Button style={ styles.button } title='Добавить' onPress={ pressHandler } />
+            <MaterialIcons.Button 
+                name='add-box'
+                style={ styles.button } 
+                onPress={ pressHandler }
+            >Добавить</MaterialIcons.Button>
         </View>
     )
 }

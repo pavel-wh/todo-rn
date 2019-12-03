@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, Button } from 'react-native'
+import { FontAwesome, AntDesign } from '@expo/vector-icons'
 import { THEME } from '../theme'
 import { AppCard } from '../components/ui/AppCard'
 import { EditModal } from '../components/EditModal'
 import { AppTextBold } from '../components/ui/AppTextBold'
+import { AppButton } from '../components/ui/AppButton'
 
 export const ToDoScreen = ({ goBack, todo, onRemove, onSave }) => {
     const [modal, setModal] = useState(false)
@@ -26,26 +28,32 @@ export const ToDoScreen = ({ goBack, todo, onRemove, onSave }) => {
 
             <AppCard style={ styles.card }>
                 <AppTextBold style={ styles.title }>{ todo.title }</AppTextBold>
-                <Button 
-                    title='Редактировать'
+                <AppButton 
                     onPress={ () => setModal(true) }
-                />
+                >
+                    <FontAwesome
+                        name='edit'
+                        size={ 20 }
+                    />
+                </AppButton>
             </AppCard>
 
             <View style={ styles.buttons } >
                 <View style={ styles.button } >
-                    <Button 
-                        title='Назад'
+                    <AppButton 
                         color={ THEME.GREY_COLOR }
                         onPress={ goBack } 
-                    />
+                    >
+                        <AntDesign name='back' size={ 20 } color={ THEME.WHITE_COLOR } />
+                    </AppButton>
                 </View>
                 <View style={ styles.button } >
-                    <Button 
-                        title='Удалить'
+                    <AppButton 
                         color={ THEME.DANGER_COLOR }
                         onPress={ () => onRemove(todo.id) }
-                    />
+                    >
+                        <FontAwesome name='remove' size={ 20 } theme={ THEME.WHITE_COLOR } />
+                    </AppButton>
                 </View>
             </View>
         </View>
@@ -58,6 +66,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     card: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         marginBottom: 10,
         padding: 15,
     },  
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
         width: '40%'
     },
     title: {
-        fontSize: 26,
-        marginBottom: 10
+        fontSize: 20,
+        marginBottom: 0
     }
 })

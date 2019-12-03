@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderWidth: 2,
         borderColor: THEME.GREY_COLOR,
-        backgroundColor: THEME.WHITE_COLOR,
+        backgroundColor: THEME.BG_COLOR,
         // iOS Shadow
         shadowColor: THEME.GREY_COLOR,
         shadowRadius: 2,
