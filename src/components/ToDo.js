@@ -10,7 +10,7 @@ export const ToDo = ({ todo, onRemove, onOpen }) => {
             onLongPress={ onRemove.bind(null, todo.id) }
         >
             <View style={ styles.todo }>
-                <Text>{ todo.title }</Text>
+                <Text style={ styles.title }>{ todo.title }</Text>
             </View>
         </TouchableOpacity>
     )
@@ -25,5 +25,8 @@ const styles = StyleSheet.create({
         borderColor: THEME.WHITE_COLOR,
         borderRadius: 5,
         marginBottom: 5
+    },
+    title: {
+        fontFamily: 'MullerExtraBold'
     }
 })

@@ -1,5 +1,6 @@
 import React , { useState } from 'react'
 import { View, StyleSheet, Text, Alert } from 'react-native'
+import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import { Navbar } from './src/components/Navbar'
 import { MainScreen } from './src/screens/MainScreen'
@@ -7,12 +8,13 @@ import { ToDoScreen } from './src/screens/ToDoScreen'
 
 async function loadApplication() {
   await Font.loadAsync({
-    'MullerThin': require('./assets/fonts/MullerThin.woff'),
-    'MullerExtraBold': require('./assets/fonts/MullerExtraBold.woff'),
-  })
+    'MullerThin': require('./assets/fonts/MullerThin.ttf'),
+    'MullerExtraBold': require('./assets/fonts/MullerExtraBold.ttf'),
+  }) 
 }
 
 export default function App() {
+  const [isReady, setIsReady] = useState(false)
   const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
     { 
@@ -24,6 +26,14 @@ export default function App() {
     //   title: 'Написать приложение'
     // } 
   ])
+ 
+  if (!isReady) {
+    return <AppLoading 
+      startAsync={ loadApplication }
+      onError={ err => console.log(err) }
+      onFinish={ () => setIsReady(true) }
+    />
+  }
 
   const addTodo = (title) => {
     const newTodo = {
