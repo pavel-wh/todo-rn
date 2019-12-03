@@ -3,5 +3,7 @@ export const THEME = {
     GREY_COLOR: 'lightgray',
     BG_COLOR: '#eeeeee',
     WHITE_COLOR: 'white',
-    MAIN_COLOR: 'firebrick'
+    MAIN_COLOR: 'firebrick',
+    PADDING_HORIZONTAL: 30,
+    PADDING_VERTICAL: 20
 }
