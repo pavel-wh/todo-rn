@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
-import { THEME } from '../theme'
+import { View, StyleSheet, TextInput, Keyboard, Alert } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
+import { THEME } from '../theme'
 
 export const AddTodo = ({ onSubmit }) => {
     
@@ -11,6 +11,7 @@ export const AddTodo = ({ onSubmit }) => {
         if (value.trim()) {
             onSubmit(value)
             setValue('')
+            Keyboard.dismiss()
         } else {
             // Error
             Alert.alert('Название задачи не может быть пустым')
