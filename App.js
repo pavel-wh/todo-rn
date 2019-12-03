@@ -1,8 +1,16 @@
 import React , { useState } from 'react'
 import { View, StyleSheet, Text, Alert } from 'react-native'
+import * as Font from 'expo-font'
 import { Navbar } from './src/components/Navbar'
 import { MainScreen } from './src/screens/MainScreen'
 import { ToDoScreen } from './src/screens/ToDoScreen'
+
+async function loadApplication() {
+  await Font.loadAsync({
+    'MullerThin': require('./assets/fonts/MullerThin.woff'),
+    'MullerExtraBold': require('./assets/fonts/MullerExtraBold.woff'),
+  })
+}
 
 export default function App() {
   const [todoId, setTodoId] = useState(null)
@@ -14,7 +22,7 @@ export default function App() {
     // { 
     //   id: '2',
     //   title: 'Написать приложение'
-    // }
+    // } 
   ])
 
   const addTodo = (title) => {
