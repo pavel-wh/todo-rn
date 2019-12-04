@@ -4,7 +4,6 @@ import { THEME } from './theme'
 import { Navbar } from './components/Navbar'
 import { MainScreen } from './screens/MainScreen'
 import { ToDoScreen } from './screens/ToDoScreen'
-import { TodoContext } from './context/todo/todoContext'
 import { ScreenContext } from './context/screen/screenContext'
 
 export const MainLayout = () => {
