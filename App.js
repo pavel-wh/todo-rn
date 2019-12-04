@@ -19,7 +19,7 @@ export default function App() {
   if (!isReady) {
     return <AppLoading
       startAsync={ loadApplication }
-      onError={ err => console.log(err) } 
+      onError={ error => console.log(error) } 
       onFinish={ () => setIsReady(true) }
     />
   }
