@@ -1,4 +1,5 @@
 import React, { useReducer, useContext } from 'react'
+import { Alert } from 'react-native'
 import { TodoContext } from './todoContext'
 import { todoReducer } from './todoReducer'
 import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../types'
@@ -27,8 +28,26 @@ export const TodoState = ({ children }) => {
     const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
 
     const removeTodo = id => {
-        changeScreen(null)
-        dispatch({ type: REMOVE_TODO, id: id })
+        const todo = state.todos.find(t => t.id === id)
+        Alert.alert(
+            'Удаление задачи',
+            `Вы уверены, что хотите удалить "${ todo.title }"?`,
+            [
+            {
+                text: 'Отмена',
+                style: 'cancel',
+            },
+            {
+                text: 'Удалить',
+                style: 'destructive',
+                onPress: () => {
+                    changeScreen(null)
+                    dispatch({ type: REMOVE_TODO, id: id })
+                }
+            },
+            ],
+            { cancelable: false },
+        )
     }
 
     return (
