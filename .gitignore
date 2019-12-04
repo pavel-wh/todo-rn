@@ -13,5 +13,6 @@ web-report/
 # macOS
 .DS_Store
 
-.expo*/
+.expo/
+.expo-shared/
 package-lock.json
