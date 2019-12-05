@@ -2,7 +2,7 @@ import React, { useReducer, useContext } from 'react'
 import { Alert } from 'react-native'
 import { TodoContext } from './todoContext'
 import { todoReducer } from './todoReducer'
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, SHOW_LOADER, CLEAR_ERROR } from '../types'
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, SHOW_LOADER, CLEAR_ERROR, FETCH_TODOS } from '../types'
 import { ScreenContext } from '../screen/screenContext'
 
 export const TodoState = ({ children }) => {
@@ -60,6 +60,19 @@ export const TodoState = ({ children }) => {
         )
     }
 
+    const fetchTodos = async () => {
+        const response = await fetch('https://todo-rn-app.firebaseio.com/todos.json', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const data = await response.json()
+        const todos = Object.keys(data).map(key => ({
+            ...data[key], id: key
+        }) )
+        console.log(data)
+        dispatch({ type: FETCH_TODOS, todos })
+    }
+
     const showLoader = () => dispatch({ type: SHOW_LOADER})
     const hideLoader = () => dispatch({ type: HIDE_LOADER})
 
@@ -69,9 +82,12 @@ export const TodoState = ({ children }) => {
     return (
         <TodoContext.Provider value={ {
             todos: state.todos,
+            loading: state.loading,
+            error: state.error,
             addTodo,
             updateTodo,
-            removeTodo
+            removeTodo,
+            fetchTodos
         } }>
             { children }
         </TodoContext.Provider> 
