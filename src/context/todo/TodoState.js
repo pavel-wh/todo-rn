@@ -25,7 +25,15 @@ export const TodoState = ({ children }) => {
 
     const [state, dispatch] = useReducer(todoReducer, initialState)
 
-    const addTodo = title => dispatch({ type: ADD_TODO, title: title })
+    const addTodo = async title => {
+        const response = await fetch('https://todo-rn-app.firebaseio.com/todos.json', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title })
+        })
+        const data = await response.json()
+        dispatch({ type: ADD_TODO, title: title, id: data.name })
+    }
 
     const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
 

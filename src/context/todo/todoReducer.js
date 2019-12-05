@@ -13,7 +13,7 @@ const handlers = {
     [ADD_TODO]: (state, { title }) => ({
         ...state, 
         todos: [...state.todos, {
-            id: Date.now().toString(),
+            id: id,
             title: title
         }]
     }),
