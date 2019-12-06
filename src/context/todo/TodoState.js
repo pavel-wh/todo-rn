@@ -70,7 +70,20 @@ export const TodoState = ({ children }) => {
         }
     }
 
-    const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
+    const updateTodo = (id, title) => {
+        clearError()
+        try {              
+            fetch(`https://todo-rn-app.firebaseio.com/todos/${ id }.json`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title })
+            })
+            dispatch({ type: UPDATE_TODO, id, title })
+        } catch (error) {
+            showError('Что-то пошло не так...')
+            console.log(error)
+        }
+    }
 
     const showLoader = () => dispatch({ type: SHOW_LOADER })
     const hideLoader = () => dispatch({ type: HIDE_LOADER })
