@@ -9,11 +9,9 @@ import { AppButton } from '../components/ui/AppButton'
 import { TodoContext } from '../context/todo/todoContext'
 import { ScreenContext } from '../context/screen/screenContext'
 
-export const ToDoScreen = ({ goBack }) => {
+export const ToDoScreen = () => {
     const { todos, updateTodo, removeTodo } = useContext(TodoContext)
-    
     const { todoId, changeScreen } = useContext(ScreenContext)
-
     const [modal, setModal] = useState(false)
 
     const todo = todos.find(t => t.id === todoId)

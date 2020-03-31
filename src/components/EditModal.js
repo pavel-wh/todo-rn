@@ -7,8 +7,10 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
     const [title, setTitle] = useState(value)
 
     const saveHandler = () => {
-        if (title.trim().length < 0) {
-            Alert.alert('Ошибка!', `Минимальная длина 3 символа. Сейчас ${
+        if (title.trim().length < 3) {
+            Alert.alert(
+                'Ошибка!', 
+                `Минимальная длина 3 символа. Сейчас ${
                 title.trim().length
             } символов.`)
         } else {

@@ -1,5 +1,9 @@
 # React Native To-Do app
+
 ## Install dependencies
-npm install
+
+`npm install`
+
 ## Run app
-npm run start
+
+`npm run start`
